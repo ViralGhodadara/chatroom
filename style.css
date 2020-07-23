@@ -1,0 +1,261 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: brown;
+}
+.container{
+    background-color: white;
+    height: 550px;
+    width: 35%;
+    align-items: center;
+}
+
+.box {
+    height: 25px;
+    width: 50%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 2px solid #222;
+}
+
+.dropdown{
+    height: 25px;
+    width: 50%;
+    margin-top: 10px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serifs;
+    border-radius: 5px;
+}
+
+.btn{
+    height: 30px;
+    width: 50%;
+    margin-top: 10px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serifs;
+    background: #3b5998;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: -webkit-grab; cursor: grab;
+}
+
+.btn:hover{
+    background: black;
+    color: white;
+}
+
+.lastLine{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 20px;
+}
+
+.lastLine a{
+    text-decoration: none;
+}
+
+.error {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: brown;
+    font-size: 13px;
+}
+
+.loginContainer {
+    margin-top: 50px;
+    /* padding-top: 20px; */
+    background-color: white;
+    height: 300px;
+    width: 40%;
+}
+
+.nav-div ul{
+    list-style-type: none;
+    color: white;
+    padding: 20px;
+    background-color: #222;
+    /* float: right; */
+}
+
+.nav-div ul li {
+    display: inline-block;
+}
+
+.nav-div ul li a {
+    color: white;
+    padding: 20px;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.nav-div ul li a:hover{
+    background-color: pink;
+    color: black;
+    border-radius: 20px;
+}
+
+.container-loginChatroom {
+    background-color: white;
+    height: 300px;
+    width: 50%;
+    margin-top: 50px;
+}
+
+.container-editDetail {
+    background-color: white;
+    height: 500px;
+    width: 50%;
+    margin-top: 20px;
+}
+.changePassword {
+    background-color: white;
+    height: 300px;
+    width: 50%;
+    margin-top: 50px;
+}
+.ownroom{
+    background-color: white;
+    height: 90%;
+    width: 85%;
+    margin-top: 50px;
+    display: grid;
+    grid-template-rows: 350px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tbl {
+    /* overflow: scroll; */
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+  }
+.table-title{
+    text-align: center;
+}
+  .tbl-heading {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: grey;
+  }
+  
+  .tbl td, .tbl th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .tbl tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .tbl tr:hover {background-color: #ddd;}
+  
+  .tbl th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+
+.container-editRoom {
+    height: 300px;
+    width: 50%;
+    background-color: white;
+    margin-top: 70px;
+}
+
+.container-chatMsg {
+    height: 440px;
+    width: 50%;
+    background-color: white;
+    overflow: scroll;
+    border: 2px solid black;
+}
+
+.sendMsg {
+    margin-left: -360px;
+    width: 20%;
+    margin-top: 11px;
+    height: 20px;
+    border: 2px solid #222;
+    text-align: center;
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.sendMsgIcon:hover{
+    background-color: grey;
+    color: white;
+}
+
+.container-myMsg {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: right;
+}
+
+.container-myMsg , .container-anotherUser {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+}
+.container-anotherUser {
+    border: 2px solid rgb(224, 224, 224);
+    background-color: rgb(224, 224, 224);
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+}
+.time-left {
+    float: left;
+    color: black;
+}
+.container-myMsg::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.sendMsgIcon {
+    color: black;
+    height: 30px; 
+    width: 40px;
+    background-color: beige;
+    border: 2px solid beige;
+    cursor: -webkit-grab; cursor: grab;
+}
+
+.time-right {
+    float: right;
+    color: black;
+}
+
+.logout {
+    margin-left: 880px;
+    width: 10%;
+    cursor: -webkit-grab; cursor: grab;
+}
+
+.logout a{
+    color: white;
+    font-family: verdana;
+    text-decoration: none;
+}
+
+.iconDel {
+    color: blue;
+}
