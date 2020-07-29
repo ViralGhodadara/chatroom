@@ -20,28 +20,71 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
     <!-- Scroll down script link -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 
 </head>
 <body bgcolor="beige">
-    <h3 class="title">Chat Here :)</h3>
+    <h3 class="title" style="margin-bottom: 5px;">Chat Here - <?php echo $_SESSION['roomName']; ?>  :)</h3>
     <!-- Msg data coding -->
     <?php
         $allMsg = $conn->prepare("SELECT * FROM chatmsg WHERE room_name= ?");
         $allMsg->execute([$_SESSION['roomName']]);
 
+        function del() {
+            echo "Hellow ";
+        }
+
         // $msgVar = $allMsg->fetch();
     ?>
     <center>
-        <div class="container-chatMsg" id="repeat">
-            <div class="child" id="repeat-child"></div>
-        </div>
-        <input type="text" name="userMsg" id="userMsg" class="sendMsg" placeholder="Write a message....." >
-        <button type="button" name="submitMsg" id="submitMsg" class="sendMsgIcon"><i class="fa fa-fast-forward" aria-hidden="true" style="font-size: 20px;"></i></button>
+        <!-- <p class="roominfo"><span style="color: black; text-decoration: underline; font-weight: bold; font-size: 25px;"><?php echo $dattOfMsg['first_name']. " " .$dattOfMsg['last_name']; ?></span> please message here and enjoy it thank you.......</p> -->
+        <button class="btn logout"><a href="http://localhost/viral/chatroom/loginchatrom.php">Logout</a></button>
+
     </center>
+    <div class="main">
+        <div class="main-child">
+            <p class="title">New Message</p>
+            <div class="container-chatMsg" id="repeat">
+                <div class="child"></div>
+            </div>
+            <input type="text" name="userMsg" id="userMsg" class="sendMsg" placeholder="Write a message here....." >
+            <button type="button" name="submitMsg" id="submitMsg" class="sendMsgIcon"><i class="fa fa-fast-forward" aria-hidden="true" style="font-size: 20px;"></i></button>
+        </div>
+        <div class="main-child">
+            <p class="title">Old Message</p>
+            <div class="container-chatMsg">
+                <div class="child">
+                    <?php
+                            while ($msgAll = $allMsg->fetch()) {
+                                if ($msgAll['email'] == $_SESSION['email']) {
+                                ?>
+                                    <div class="container-myMsg">
+                                        <p><?php echo $msgAll['msg']; ?></p>
+                                        <br>
+                                        <p><?php echo $msgAll['currentdateandtime']; ?> <a href="operation.php?deleteMsgId=<?php echo $msgAll['id']; ?>" class="deleteMsgIcon"><i class="fa fa-trash" aria-hidden="true"></i></a> </p>
+                                    </div>
+                                <?php
+                                } else {
+                                ?>
+                                    <div class="container-anotherUser">
+                                        <p><?php echo $msgAll['msg']; ?></p>
+                                        <br>
+                                        <p><?php echo $msgAll['currentdateandtime']; ?> </p>
+                                    </div>
+                                <?php
+                                }
+                            }
+                        
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="http://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     
     <script type="text/javascript">
+
+    // gotoBottom();
 
         //This is a scoroll down effect start 
         // $(document).ready(function() {
@@ -62,42 +105,83 @@
 		// 		)
 		// 	})
 		// })
+        // var objDiv = $(".container-chatMsg");
+    	// var h = objDiv.get(0).scrollHeight;
+    	// objDiv.animate({scrollTop: h});
+        
+
+        function gotoBottom() {
+            var element = document.getElementById('repeat');
+            console.log("This is a scroll Height : "+element.scrollHeight);
+            console.log("This is a client scroll Height : "+element.clientHeight);
+            element.scrollTop = element.scrollHeight - element.clientHeight;
+            // console.log("This is a print : "+element.scrollTop);
+        }
+
         //This is a scoroll down effect end 
 
+        // new code for scroll start
+
+        // new code for scroll ends
+
+        // when user click the enter so button was clickd
         let input = document.getElementById("userMsg");
         input.addEventListener("keyup", function(event) {
             runFunction();
             if (event.keyCode === 13) {
                 event.preventDefault();
+                gotoBottom();
                 document.getElementById("submitMsg").click();
             }
         });
 
         $('#submitMsg').click(function(){
+            // gotoBottom();
             let clientmsg = $('#userMsg').val();
             let len = clientmsg.length;
             console.log(clientmsg);
             if(len > 0) {
                 $.post("postmsg.php", {text: clientmsg, room: '<?php echo $_SESSION['roomName']; ?>', email: '<?php echo $dattOfMsg['email_id']; ?>', first_name: '<?php echo $dattOfMsg['first_name']; ?>'},
                 function(data, status) { 
-                    document.getElementsByClassName('child')[0].innerHTML = data;});
-                    $('#userMsg').val('');
-                    return false;
+                    document.getElementsByClassName('child')[0].innerHTML = data;
+                    gotoBottom();
+                });
+                $('#userMsg').val('');
+                gotoBottom();
+                return false;
             }
         });
 
-        setInterval(runFunction, 10);
+        setInterval(runFunction, 0.0000001);
+
         function runFunction() {
-            console.log('This is a called');
+            // console.log('This is a called');
             $.post('htcont.php', {room : '<?php echo $_SESSION['roomName']; ?>'},
                 function(data, status) {
-                console.log('This is a function');
+                // console.log('This is a function');
                 document.getElementsByClassName('child')[0].innerHTML = data;
-                console.log(data);
+                gotoBottom();
+                // console.log(data);
             });
         }
         
     </script>
-    <a href="http://localhost/viral/chatroom/loginchatrom.php"><button class="btn logout">Logout</button></a>
+    
+
+    <!-- <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script> -->
 </body>
 </html>
+<?php
+// function setInterval($f, $milliseconds)
+// {
+//     $seconds=(int)$milliseconds/1000;
+//     while(true)
+//     {
+//         $f();
+//         sleep($seconds);
+//     }
+// }
+// setInterval(function(){
+//     echo "hi!\n";
+// }, 1000);
+?>
